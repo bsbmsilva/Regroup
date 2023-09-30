@@ -6,11 +6,14 @@
     - quran
     - transliteration
     - versebyverse
+
 If any type does not have an English edition, the program will select the first edition shown.
 At the end, a file called resultado.json will be saved, with the following structure:
-    - Edition
-        - Juz
-            - Surah
+
+        - Edition
+            - Juz
+                - Surah
+
 Each item on the Surah list will contain an Ayah.
 
 - The file called Conect_Server will connect to the server and check for the existence of a database called Quran. If this database doesn't exist, it will be created.
