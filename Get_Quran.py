@@ -56,23 +56,24 @@ try:
 
             for surah in data["data"]["surahs"]:
                 surah_number = surah["number"]
-                juz_number = surah["ayahs"][0]["juz"]
-
-                if edition_name not in structure:
-                    structure[edition_name] = {}
-
-                if juz_number not in structure[edition_name]:
-                    structure[edition_name][juz_number] = {}
-
-                if surah_number not in structure[edition_name][juz_number]:
-                    structure[edition_name][juz_number][surah_number] = []
 
                 for ayah in surah["ayahs"]:
+                    juz_number = ayah["juz"]
+
+                    if edition_name not in structure:
+                        structure[edition_name] = {}
+
+                    if juz_number not in structure[edition_name]:
+                        structure[edition_name][juz_number] = {}
+
+                    if surah_number not in structure[edition_name][juz_number]:
+                        structure[edition_name][juz_number][surah_number] = []
+
                     structure[edition_name][juz_number][surah_number].append(ayah["text"])
         else:
             print(f'Failed to access API for edition {edit}. Status code: {response.status_code}')
 
-    # Grava os resultados em um arquivo JSON
+    # Saves the result in a json file
     results = structure
     with open('resultado.json', 'w', encoding='utf-8') as json_file:
         json.dump(results, json_file, ensure_ascii=False, indent=4)
